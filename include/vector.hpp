@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+#include <cassert>
 template <typename T>
 class vector_t
 {
@@ -19,8 +21,8 @@ public:
     
 	void push_back(T value);
 	void pop_back();
-    T & at(std::size_t index);
-    T at(std::size_t index) const;
+        T & at(std::size_t index);
+        T at(std::size_t index) const;
 	T & operator [](std::size_t index);
 	T operator [](std::size_t index) const;
     
@@ -28,8 +30,7 @@ public:
 };
 template<typename T>
 bool operator !=(vector_t<T> const & lhs, vector_t<T> const & rhs);
-#include <algorithm>
-#include <cassert>
+
 template <typename T>
 T & vector_t<T>::at(std::size_t index)
 {
@@ -38,6 +39,7 @@ T & vector_t<T>::at(std::size_t index)
     }
     return elements_[index];
 }
+
 template<typename T>
 T  vector_t<T>::at(std::size_t index) const
 {
@@ -46,6 +48,7 @@ T  vector_t<T>::at(std::size_t index) const
     }
     return elements_[index];
 }
+
 template <typename T>
 vector_t<T>::vector_t()
 {
@@ -53,6 +56,7 @@ vector_t<T>::vector_t()
   size_=0;
   capacity_=0;
 }
+
 template <typename T>
 vector_t<T>::vector_t(vector_t const & other)
 {
@@ -63,6 +67,7 @@ vector_t<T>::vector_t(vector_t const & other)
   size_=other.size();
   capacity_=other.capacity();
 }
+
 template <typename T>
 vector_t<T> & vector_t<T>::operator =(vector_t const & other)
 {   if(this!=&other){
@@ -80,6 +85,7 @@ vector_t<T> & vector_t<T>::operator =(vector_t const & other)
    return *this;
 
 }
+
 template <typename T>
 bool vector_t<T>::operator ==(vector_t const & other) const
 {
@@ -96,6 +102,7 @@ bool vector_t<T>::operator ==(vector_t const & other) const
 
   return result;
 }
+
 template <typename T>
 vector_t<T>::~vector_t()
 {
@@ -103,16 +110,19 @@ vector_t<T>::~vector_t()
         delete[] elements_; 
     }
 }
+
 template <typename T>
 std::size_t vector_t<T>::size() const
 {
     return size_;
 }
+
 template <typename T>
 std::size_t vector_t<T>::capacity() const
 {
     return capacity_;
 }
+
 template <typename T>
 void vector_t<T>::push_back(T value)
 {
@@ -140,6 +150,7 @@ void vector_t<T>::push_back(T value)
      }
 
 }
+
 template <typename T>
 void vector_t<T>::pop_back()
 {   
@@ -163,18 +174,21 @@ void vector_t<T>::pop_back()
      }
      
 }
+
 template <typename T>
 T & vector_t<T>::operator [](std::size_t index)
 {
   
   return elements_[index];
 }
+
 template <typename T>
 T vector_t<T>::operator [](std::size_t index) const
 {
   
   return elements_[index];
 }
+
 template <typename T>
 bool operator !=(vector_t<T> const & lhs, vector_t<T> const & rhs)
 {   
